@@ -1,0 +1,45 @@
+{
+  "name": "Facebook",
+  "version": "0.1.0",
+  "summary": "Facebook.",
+  "description": "Facebook..",
+  "homepage": "https://github.com/ietstudio/Facebook",
+  "license": "MIT",
+  "authors": {
+    "gaoyang": "geekgaoyang@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/ietstudio/Facebook.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "resource_bundles": {
+    "Facebook": [
+      "Pod/Assets/*.png"
+    ]
+  },
+  "dependencies": {
+    "GamePluginBase": [
+
+    ],
+    "Bolts": [
+      "~> 1.2.0"
+    ],
+    "FBSDKCoreKit": [
+      "~> 4.5.1"
+    ],
+    "FBSDKLoginKit": [
+      "~> 4.5.1"
+    ],
+    "FBSDKShareKit": [
+      "~> 4.5.1"
+    ]
+  },
+  "pod_target_xcconfig": {
+    "CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES": "YES"
+  }
+}
