@@ -1,6 +1,6 @@
 {
   "name": "Facebook",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "Facebook.",
   "description": "Facebook..",
   "homepage": "https://github.com/ietstudio/Facebook",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/ietstudio/Facebook.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
   "platforms": {
     "ios": "7.0"

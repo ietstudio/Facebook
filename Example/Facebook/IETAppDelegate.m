@@ -7,14 +7,14 @@
 //
 
 #import "IETAppDelegate.h"
-#import "IOSFacebookHelper.h"
+#import "FacebookHelper.h"
 
 @implementation IETAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [[IOSFacebookHelper getInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+    [[FacebookHelper getInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     return YES;
 }
 
@@ -38,7 +38,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [[IOSFacebookHelper getInstance] applicationDidBecomeActive:application];
+    [[FacebookHelper getInstance] applicationDidBecomeActive:application];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -47,7 +47,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    [[IOSFacebookHelper getInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    [[FacebookHelper getInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
     return YES;
 }
 

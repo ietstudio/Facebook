@@ -18,6 +18,24 @@
 
 SINGLETON_DEFINITION(SystemUtil)
 
+#pragma mark - private
+
+- (UIViewController *)topViewController:(UIViewController *)rootViewController
+{
+    if (rootViewController.presentedViewController == nil) {
+        return rootViewController;
+    }
+    if ([rootViewController.presentedViewController isMemberOfClass:[UINavigationController class]]) {
+        UINavigationController *navigationController = (UINavigationController *)rootViewController.presentedViewController;
+        UIViewController *lastViewController = [[navigationController viewControllers] lastObject];
+        return [self topViewController:lastViewController];
+    }
+    UIViewController *presentedViewController = (UIViewController *)rootViewController.presentedViewController;
+    return [self topViewController:presentedViewController];
+}
+
+#pragma mark - public
+
 - (NSString *)getCountryCode {
     NSString *country = [[NSLocale currentLocale] objectForKey: NSLocaleCountryCode];
     if(!country) {
@@ -33,8 +51,7 @@ SINGLETON_DEFINITION(SystemUtil)
 }
 
 - (UIViewController *)getCurrentViewController {
-    UIViewController *controller = [[self getCurrentWindow] rootViewController];
-    return controller;
+    return [self topViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
 }
 
 - (NSString *)getConfigValueWithKey:(NSString *)key {

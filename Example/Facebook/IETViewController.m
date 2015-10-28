@@ -7,7 +7,7 @@
 //
 
 #import "IETViewController.h"
-#import "IOSFacebookHelper.h"
+#import "FacebookHelper.h"
 
 @interface IETViewController ()
 
@@ -28,17 +28,17 @@
 }
 
 - (IBAction)login:(id)sender {
-    [[IOSFacebookHelper getInstance] login];
+    [[FacebookHelper getInstance] login];
 }
 - (IBAction)logout:(id)sender {
-    [[IOSFacebookHelper getInstance] logout];
+    [[FacebookHelper getInstance] logout];
 }
 - (IBAction)isLogin:(id)sender {
-    BOOL isLogin = [[IOSFacebookHelper getInstance] isLogin];
+    BOOL isLogin = [[FacebookHelper getInstance] isLogin];
     NSLog(@"%@", isLogin?@"SUCCESS":@"FAILED");
 }
 - (IBAction)share:(id)sender {
-    [[IOSFacebookHelper getInstance] shareName:@"name"
+    [[FacebookHelper getInstance] shareName:@"name"
                                    description:@"desc"
                                       imageUrl:@"http://www.baidu.com/aaa.png"
                                     contentUrl:@"http://www.baidu.com/aaa.png"
@@ -48,38 +48,38 @@
     }];
 }
 - (IBAction)getInvitableFriends:(id)sender {
-    [[IOSFacebookHelper getInstance] getInvitableFriends:@[] :^(NSDictionary *friends) {
+    [[FacebookHelper getInstance] getInvitableFriends:@[] :^(NSDictionary *friends) {
         NSLog(@"%@", friends);
     }];
 }
 - (IBAction)getFriends:(id)sender {
-    [[IOSFacebookHelper getInstance] getFriends:^(NSDictionary *friends) {
+    [[FacebookHelper getInstance] getFriends:^(NSDictionary *friends) {
         NSLog(@"%@", friends);
     }];
 }
 - (IBAction)getLevel:(id)sender {
-    [[IOSFacebookHelper getInstance] getLevel:@"1582428892009015" :^(int level) {
+    [[FacebookHelper getInstance] getLevel:@"1582428892009015" :^(int level) {
         NSLog(@"%d", level);
     }];
 }
 - (IBAction)setLevel:(id)sender {
-    [[IOSFacebookHelper getInstance] setLevel:10];
+    [[FacebookHelper getInstance] setLevel:10];
 }
 - (IBAction)getAccessToken:(id)sender {
-    NSLog(@"%@", [[IOSFacebookHelper getInstance] getAccessToken]);
+    NSLog(@"%@", [[FacebookHelper getInstance] getAccessToken]);
 }
 - (IBAction)getUserProfile:(id)sender {
-    [[IOSFacebookHelper getInstance] getUserProfile:^(NSDictionary *dict) {
+    [[FacebookHelper getInstance] getUserProfile:^(NSDictionary *dict) {
         NSLog(@"%@", dict);
     }];
 }
 - (IBAction)setAppLinkFunc:(id)sender {
-    [[IOSFacebookHelper getInstance] setAppLinkFunc:^(NSDictionary *dict) {
+    [[FacebookHelper getInstance] setAppLinkFunc:^(NSDictionary *dict) {
         NSLog(@"%@", dict);
     }];
 }
 - (IBAction)confirmRequest:(id)sender {
-    [[IOSFacebookHelper getInstance] confirmRequest:@[@"AVn_i1V1KzO-fD5Af-fxYzgJ-e-BWaNoyYn52qLBzSryBB3HGGArBwlL1sKQIJf-D0HDkOkYso3mONB38I7qsAZnbdcT5zTvztwDfOiRWdVdEg"]
+    [[FacebookHelper getInstance] confirmRequest:@[@"AVn_i1V1KzO-fD5Af-fxYzgJ-e-BWaNoyYn52qLBzSryBB3HGGArBwlL1sKQIJf-D0HDkOkYso3mONB38I7qsAZnbdcT5zTvztwDfOiRWdVdEg"]
                                           withTitle:@"title"
                                             withMsg:@"msg"
                                                    :^(NSDictionary *result) {
@@ -87,22 +87,22 @@
                                                    }];
 }
 - (IBAction)quertRequest:(id)sender {
-    [[IOSFacebookHelper getInstance] queryRequest:^(NSDictionary *requests) {
+    [[FacebookHelper getInstance] queryRequest:^(NSDictionary *requests) {
         NSLog(@"%@", requests);
     }];
 }
 - (IBAction)acceptRequest:(id)sender {
-    [[IOSFacebookHelper getInstance] acceptRequest:@"" :^(BOOL result) {
+    [[FacebookHelper getInstance] acceptRequest:@"" :^(BOOL result) {
         NSLog(@"%@", result?@"SUCCESS":@"FAILED");
     }];
 }
 - (IBAction)setLoginFunc:(id)sender {
-    [[IOSFacebookHelper getInstance] setLoginFunc:^(NSString *userId, NSString *token) {
+    [[FacebookHelper getInstance] setLoginFunc:^(NSString *userId, NSString *token) {
         NSLog(@"%@, %@", userId, token);
     }];
 }
 - (IBAction)getUserId:(id)sender {
-    NSString* userId = [[IOSFacebookHelper getInstance] getUserID];
+    NSString* userId = [[FacebookHelper getInstance] getUserID];
     NSLog(@"%@", userId);
 }
 
