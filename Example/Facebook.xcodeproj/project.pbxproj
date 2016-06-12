@@ -21,8 +21,8 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		AD34A6863C6F05BCAAC88EE7 /* Pods_Facebook_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25E015A79C86013182FE6469 /* Pods_Facebook_Tests.framework */; };
-		F7BB2E6DDBEBCCE8C937017D /* Pods_Facebook_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BEAC0C00CD2D659497858C /* Pods_Facebook_Example.framework */; };
+		959D2A18A7F5298162C6D57E /* libPods-Facebook_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E5BDE62A5824A3F1E558E6B /* libPods-Facebook_Example.a */; };
+		ED83CB6BB9319715826ACA60 /* libPods-Facebook_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 905A7359871B48AFF9E82E72 /* libPods-Facebook_Tests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +38,7 @@
 /* Begin PBXFileReference section */
 		09D30CB022F1029DDE23CC6D /* Pods-Facebook_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Facebook_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Facebook_Example/Pods-Facebook_Example.release.xcconfig"; sourceTree = "<group>"; };
 		14B8A301B18A6EA44EA85AAF /* Pods-Facebook_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Facebook_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Facebook_Tests/Pods-Facebook_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		25E015A79C86013182FE6469 /* Pods_Facebook_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Facebook_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E5BDE62A5824A3F1E558E6B /* libPods-Facebook_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Facebook_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32AFE3F87855BFCF94801198 /* Facebook.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Facebook.podspec; path = ../Facebook.podspec; sourceTree = "<group>"; };
 		4F5565FDEC10EF002E141FA5 /* Pods-Facebook_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Facebook_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Facebook_Tests/Pods-Facebook_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		506D61EFB4E3072C13FCB971 /* Pods-Facebook_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Facebook_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Facebook_Example/Pods-Facebook_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		70A626702CAC389098DCA174 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		93BEAC0C00CD2D659497858C /* Pods_Facebook_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Facebook_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		905A7359871B48AFF9E82E72 /* libPods-Facebook_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Facebook_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +75,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				F7BB2E6DDBEBCCE8C937017D /* Pods_Facebook_Example.framework in Frameworks */,
+				959D2A18A7F5298162C6D57E /* libPods-Facebook_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +86,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				AD34A6863C6F05BCAAC88EE7 /* Pods_Facebook_Tests.framework in Frameworks */,
+				ED83CB6BB9319715826ACA60 /* libPods-Facebook_Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,8 +121,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				93BEAC0C00CD2D659497858C /* Pods_Facebook_Example.framework */,
-				25E015A79C86013182FE6469 /* Pods_Facebook_Tests.framework */,
+				2E5BDE62A5824A3F1E558E6B /* libPods-Facebook_Example.a */,
+				905A7359871B48AFF9E82E72 /* libPods-Facebook_Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
