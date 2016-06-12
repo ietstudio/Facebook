@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'Facebook_Example' do
+  pod 'Facebook', :path => '../'
+
+  target 'Facebook_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
