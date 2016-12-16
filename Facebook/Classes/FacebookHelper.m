@@ -139,7 +139,7 @@ SINGLETON_DEFINITION(FacebookHelper)
     if ([self isLogin]) {
         return;
     }
-    [self checkPermissions:@[@"public_profile", @"email", @"user_birthday", @"user_friends"] :PERMISSION_READ :^(BOOL isSuccess) {
+    [self checkPermissions:@[@"public_profile", @"email", @"user_friends"] :PERMISSION_READ :^(BOOL isSuccess) {
         NSLog(@"login %@", isSuccess?@"SUCCESS":@"FAILED");
     }];
 }
@@ -161,12 +161,12 @@ SINGLETON_DEFINITION(FacebookHelper)
 }
 
 - (void)getUserProfile:(void (^)(NSDictionary *))func {
-    [self checkPermissions:@[@"public_profile", @"email", @"user_birthday"] :PERMISSION_READ :^(BOOL result) {
+    [self checkPermissions:@[@"public_profile", @"email"] :PERMISSION_READ :^(BOOL result) {
         if (!result) {
             func(nil);
             return;
         }
-        NSString* graphPath = [NSString stringWithFormat:@"/me?fields=id,name,gender,email,birthday"];
+        NSString* graphPath = [NSString stringWithFormat:@"/me?fields=id,name,gender,email"];
         FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                       initWithGraphPath:graphPath
                                       parameters:nil
