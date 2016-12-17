@@ -19,6 +19,14 @@
 SINGLETON_DECLARE(FacebookHelper)
 
 /**
+ *  打开facebook主页
+ *
+ *  @param installUrl 主页
+ *  @param url        主页url
+ */
+- (void)openFacebookPage:(NSString*)installUrl :(NSString*)url;
+
+/**
  *  设置Login回调
  *
  *  @param func
@@ -31,14 +39,6 @@ SINGLETON_DECLARE(FacebookHelper)
  *  @param callback 
  */
 - (void)setAppLinkFunc:(void (^)(NSDictionary *dict))func;
-
-/**
- *  打开facebook主页
- *
- *  @param installUrl 主页
- *  @param url        主页url
- */
-- (void)openFacebookPage:(NSString*)installUrl :(NSString*)url;
 
 /**
  *  是否已经登陆
@@ -78,7 +78,7 @@ SINGLETON_DECLARE(FacebookHelper)
  *
  *  @return
  */
-- (void)getUserProfile:(void(^)(NSDictionary* dict))func;
+- (void)getUserProfileWithId:(NSString*)fid andPicSize:(int)picSize cb:(void(^)(NSDictionary* dict))func;
 
 /**
  *  获取可邀请的好友
@@ -86,14 +86,14 @@ SINGLETON_DECLARE(FacebookHelper)
  *  @param inviteTokens 排除的token
  *  @param func         回调block
  */
-- (void)getInvitableFriends:(NSArray*)inviteTokens :(void(^)(NSDictionary* friends))func;
+- (void)getInvitableFriendsWithInviteToken:(NSArray*)inviteTokens picSize:(int)picSize cb:(void(^)(NSDictionary* friends))func;
 
 /**
  *  获取游戏中的好友
  *
  *  @param func 回调block
  */
-- (void)getFriends:(void(^)(NSDictionary* friends))func;
+- (void)getFriendsWithPicSize:(int)picSize cb:(void(^)(NSDictionary* friends))func;
 
 /**
  *  发送Request
@@ -103,7 +103,7 @@ SINGLETON_DECLARE(FacebookHelper)
  *  @param msg         消息内容
  *  @param func        回调block
  */
-- (void)confirmRequest:(NSArray*)fidOrTokens withTitle:(NSString*)title withMsg:(NSString*)msg :(void(^)(NSDictionary* result))func;
+- (void)confirmRequest:(NSArray*)fidOrTokens withTitle:(NSString*)title withMsg:(NSString*)msg cb:(void(^)(NSDictionary* result))func;
 
 /**
  *  查询收到的Request
@@ -118,7 +118,7 @@ SINGLETON_DECLARE(FacebookHelper)
  *  @param requestId
  *  @param func
  */
-- (void)acceptRequest:(NSString*)requestId :(void(^)(BOOL result))func;
+- (void)acceptRequest:(NSString*)requestId cb:(void(^)(BOOL result))func;
 
 /**
  *  分享
@@ -143,6 +143,6 @@ SINGLETON_DECLARE(FacebookHelper)
  *  @param fid
  *  @param func 
  */
-- (void)getLevel:(NSString*)fid :(void(^)(int level))func;
+- (void)getLevelWithId:(NSString*)fid cb:(void(^)(int level))func;
 
 @end

@@ -52,19 +52,19 @@
 }
 
 - (IBAction)getInvitableFriends:(id)sender {
-    [[FacebookHelper getInstance] getInvitableFriends:@[] :^(NSDictionary *friends) {
+    [[FacebookHelper getInstance] getInvitableFriendsWithInviteToken:@[] picSize:320 cb:^(NSDictionary *friends) {
         NSLog(@"%@", friends);
     }];
 }
 
 - (IBAction)getFriends:(id)sender {
-    [[FacebookHelper getInstance] getFriends:^(NSDictionary *friends) {
+    [[FacebookHelper getInstance] getFriendsWithPicSize:320 cb:^(NSDictionary *friends) {
         NSLog(@"%@", friends);
     }];
 }
 
 - (IBAction)getLevel:(id)sender {
-    [[FacebookHelper getInstance] getLevel:@"1582428892009015" :^(int level) {
+    [[FacebookHelper getInstance] getLevelWithId:@"1582428892009015" cb:^(int level) {
         NSLog(@"%d", level);
     }];
 }
@@ -78,7 +78,7 @@
 }
 
 - (IBAction)getUserProfile:(id)sender {
-    [[FacebookHelper getInstance] getUserProfile:^(NSDictionary *dict) {
+    [[FacebookHelper getInstance] getUserProfileWithId:nil andPicSize:320 cb:^(NSDictionary *dict) {
         NSLog(@"%@", dict);
     }];
 }
@@ -90,10 +90,10 @@
 }
 
 - (IBAction)confirmRequest:(id)sender {
-    [[FacebookHelper getInstance] confirmRequest:@[@"AVn_i1V1KzO-fD5Af-fxYzgJ-e-BWaNoyYn52qLBzSryBB3HGGArBwlL1sKQIJf-D0HDkOkYso3mONB38I7qsAZnbdcT5zTvztwDfOiRWdVdEg"]
+    [[FacebookHelper getInstance] confirmRequest:@[@"aaa"]
                                        withTitle:@"title"
                                          withMsg:@"msg"
-                                                :^(NSDictionary *result) {
+                                              cb:^(NSDictionary *result) {
                                                     NSLog(@"%@", result);
                                                 }];
 }
@@ -105,7 +105,7 @@
 }
 
 - (IBAction)acceptRequest:(id)sender {
-    [[FacebookHelper getInstance] acceptRequest:@"" :^(BOOL result) {
+    [[FacebookHelper getInstance] acceptRequest:@"" cb:^(BOOL result) {
         NSLog(@"%@", result?@"SUCCESS":@"FAILED");
     }];
 }

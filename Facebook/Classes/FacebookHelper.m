@@ -44,7 +44,7 @@ SINGLETON_DEFINITION(FacebookHelper)
 }
 
 /**
- *  登陆并申请权限
+ *  申请权限
  *
  *  @param permissions 权限
  *  @param func        回调
@@ -112,19 +112,19 @@ SINGLETON_DEFINITION(FacebookHelper)
 
 #pragma mark - public method
 
+- (void)openFacebookPage:(NSString *)installUrl :(NSString *)url {
+    if(![[UIApplication sharedApplication] openURL:[NSURL URLWithString:installUrl]])
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    }
+}
+
 - (void)setLoginFunc:(void (^)(NSString *, NSString *))func {
     _loginFunc = func;
 }
 
 - (void)setAppLinkFunc:(void (^)(NSDictionary *))func {
     _applinkFunc = func;
-}
-
-- (void)openFacebookPage:(NSString *)installUrl :(NSString *)url {
-    if(![[UIApplication sharedApplication] openURL:[NSURL URLWithString:installUrl]])
-    {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-    }
 }
 
 - (BOOL)isLogin {
@@ -136,16 +136,12 @@ SINGLETON_DEFINITION(FacebookHelper)
 }
 
 - (void)login {
-    if ([self isLogin]) {
-        return;
-    }
     [self checkPermissions:@[@"public_profile", @"email", @"user_friends"] :PERMISSION_READ :^(BOOL isSuccess) {
         NSLog(@"login %@", isSuccess?@"SUCCESS":@"FAILED");
     }];
 }
 
-- (NSString *)getUserID
-{
+- (NSString *)getUserID {
     FBSDKAccessToken* accessToken = [FBSDKAccessToken currentAccessToken];
     return accessToken.userID;
 }
@@ -160,13 +156,14 @@ SINGLETON_DEFINITION(FacebookHelper)
     [FBSDKProfile setCurrentProfile:nil];
 }
 
-- (void)getUserProfile:(void (^)(NSDictionary *))func {
+- (void)getUserProfileWithId:(NSString *)fid andPicSize:(int)picSize cb:(void (^)(NSDictionary *))func {
+    fid = fid == nil ? @"me" : fid;
     [self checkPermissions:@[@"public_profile", @"email"] :PERMISSION_READ :^(BOOL result) {
         if (!result) {
             func(nil);
             return;
         }
-        NSString* graphPath = [NSString stringWithFormat:@"/me?fields=id,name,gender,email"];
+        NSString* graphPath = [NSString stringWithFormat:@"/$@?fields=id,name,gender,picture.height(%d).width(%d),email", fid, picSize, picSize];
         FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                       initWithGraphPath:graphPath
                                       parameters:nil
@@ -182,13 +179,13 @@ SINGLETON_DEFINITION(FacebookHelper)
     }];
 }
 
-- (void)getInvitableFriends:(NSArray *)inviteTokens :(void (^)(NSDictionary *))func {
+- (void)getInvitableFriendsWithInviteToken:(NSArray *)inviteTokens picSize:(int)picSize cb:(void (^)(NSDictionary *))func {
     [self checkPermissions:@[@"user_friends"] :PERMISSION_READ :^(BOOL result) {
         if (!result) {
             func(nil);
             return;
         }
-        NSString* graphPath = [NSString stringWithFormat:@"/me/invitable_friends?limit=5000&fields=name,picture.width(130)"];
+        NSString* graphPath = [NSString stringWithFormat:@"/me/invitable_friends?limit=5000&fields=name,picture.width(%d).height(%d)", picSize, picSize];
         if (inviteTokens != nil && [inviteTokens count] > 0) {
             NSString* inviteTokensStr = [inviteTokens componentsJoinedByString:@"','"];
             graphPath = [NSString stringWithFormat:@"%@&excluded_ids=['%@']", graphPath, inviteTokensStr];
@@ -208,14 +205,15 @@ SINGLETON_DEFINITION(FacebookHelper)
     }];
 }
 
-- (void)getFriends:(void (^)(NSDictionary *))func {
+- (void)getFriendsWithPicSize:(int)picSize cb:(void (^)(NSDictionary *))func {
     [self checkPermissions:@[@"user_friends"] :PERMISSION_READ :^(BOOL result) {
         if (!result) {
             func(nil);
             return;
         }
+        NSString *graphPath = [NSString stringWithFormat:@"/me/friends?fields=id,name,picture.width(%d).height(%d)", picSize, picSize];
         FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                      initWithGraphPath:@"/me/friends"
+                                      initWithGraphPath:graphPath
                                       parameters:nil
                                       HTTPMethod:@"GET"];
         [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
@@ -229,7 +227,7 @@ SINGLETON_DEFINITION(FacebookHelper)
     }];
 }
 
-- (void)confirmRequest:(NSArray *)fidOrTokens withTitle:(NSString *)title withMsg:(NSString *)msg :(void (^)(NSDictionary *))func {
+- (void)confirmRequest:(NSArray *)fidOrTokens withTitle:(NSString *)title withMsg:(NSString *)msg cb:(void (^)(NSDictionary *))func {
     [self checkPermissions:@[@"public_profile"] :PERMISSION_READ :^(BOOL result) {
         if (!result) {
             func(nil);
@@ -271,7 +269,7 @@ SINGLETON_DEFINITION(FacebookHelper)
     }];
 }
 
-- (void)acceptRequest:(NSString *)requestId :(void (^)(BOOL))func {
+- (void)acceptRequest:(NSString *)requestId cb:(void (^)(BOOL))func {
     [self checkPermissions:@[@"public_profile"] :PERMISSION_READ :^(BOOL result) {
         if (!result) {
             func(NO);
@@ -347,7 +345,7 @@ SINGLETON_DEFINITION(FacebookHelper)
     }
 }
 
-- (void)getLevel:(NSString *)fid :(void (^)(int))func {
+- (void)getLevelWithId:(NSString *)fid cb:(void (^)(int))func {
     [self checkPermissions:@[@"public_profile"] :PERMISSION_READ :^(BOOL result) {
         if (!result) {
             func(-1);
