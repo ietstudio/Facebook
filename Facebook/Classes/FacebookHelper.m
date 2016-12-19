@@ -163,7 +163,7 @@ SINGLETON_DEFINITION(FacebookHelper)
             func(nil);
             return;
         }
-        NSString* graphPath = [NSString stringWithFormat:@"/$@?fields=id,name,gender,picture.height(%d).width(%d),email", fid, picSize, picSize];
+        NSString* graphPath = [NSString stringWithFormat:@"/%@?fields=id,name,gender,picture.height(%d).width(%d),email", fid, picSize, picSize];
         FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                       initWithGraphPath:graphPath
                                       parameters:nil
