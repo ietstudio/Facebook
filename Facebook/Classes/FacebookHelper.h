@@ -14,7 +14,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
 
-@interface FacebookHelper : NSObject <LifeCycleDelegate, FBSDKGameRequestDialogDelegate>
+@interface FacebookHelper : NSObject <LifeCycleDelegate, FBSDKGameRequestDialogDelegate, FBSDKAppInviteDialogDelegate>
 
 SINGLETON_DECLARE(FacebookHelper)
 
@@ -144,5 +144,14 @@ SINGLETON_DECLARE(FacebookHelper)
  *  @param func 
  */
 - (void)getLevelWithId:(NSString*)fid cb:(void(^)(int level))func;
+
+/**
+ 邀请好友
+
+ @param linkUrl
+ @param imgUrl
+ @param block
+ */
+- (void)inviteFriendsWithLink:(NSString*)linkUrl andImg:(NSString*)imgUrl withBlock:(void(^)(BOOL result))block;
 
 @end

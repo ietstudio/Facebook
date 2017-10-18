@@ -121,4 +121,10 @@
     NSLog(@"%@", userId);
 }
 
+- (IBAction)appInvite:(id)sender {
+    [[FacebookHelper getInstance] inviteFriendsWithLink:@"https://fb.me/538151933189078" andImg:nil withBlock:^(BOOL result) {
+        NSLog(@"invite result = %@", result?@"SUCCESS":@"FAILED");
+    }];
+}
+
 @end

@@ -19,6 +19,7 @@
     void (^_loginFunc)(NSString*, NSString*);
     void (^_applinkFunc)(NSDictionary*);
     void (^_requestFunc)(NSDictionary*);
+    void (^_inviteBlock)(BOOL);
 }
 
 SINGLETON_DEFINITION(FacebookHelper)
@@ -374,6 +375,19 @@ SINGLETON_DEFINITION(FacebookHelper)
     }];
 }
 
+- (void)inviteFriendsWithLink:(NSString *)linkUrl andImg:(NSString *)imgUrl withBlock:(void (^)(BOOL))block {
+    _inviteBlock = block;
+    FBSDKAppInviteContent *content =[[FBSDKAppInviteContent alloc] init];
+    content.appLinkURL = [NSURL URLWithString:linkUrl];
+    //optionally set previewImageURL
+    if (imgUrl && imgUrl.length > 0) {
+        content.appInvitePreviewImageURL = [NSURL URLWithString:imgUrl];
+    }
+    // Present the dialog. Assumes self is a view controller
+    // which implements the protocol `FBSDKAppInviteDialogDelegate`.
+    [FBSDKAppInviteDialog showWithContent:content delegate:self];
+}
+
 #pragma mark - FBSDKGameRequestDialogDelegate
 
 - (void)gameRequestDialog:(FBSDKGameRequestDialog *)gameRequestDialog didCompleteWithResults:(NSDictionary *)results {
@@ -386,6 +400,27 @@ SINGLETON_DEFINITION(FacebookHelper)
 
 - (void)gameRequestDialogDidCancel:(FBSDKGameRequestDialog *)gameRequestDialog {
     _requestFunc(nil);
+}
+
+#pragma mark - FBSDKAppInviteDialogDelegate
+
+- (void)appInviteDialog:(FBSDKAppInviteDialog *)appInviteDialog didCompleteWithResults:(NSDictionary *)results {
+    NSLog(@"appInviteDialog:didCompleteWithResults%@", results);
+    if (!results) {
+        _inviteBlock(NO);
+        return;
+    }
+    NSString* completionGesture = [results objectForKey:@"completionGesture"];
+    if ([completionGesture isEqualToString:@"cancel"]) {
+        _inviteBlock(NO);
+    } else {
+        _inviteBlock(YES);
+    }
+}
+
+- (void)appInviteDialog:(FBSDKAppInviteDialog *)appInviteDialog didFailWithError:(NSError *)error {
+    NSLog(@"appInviteDialog:didFailWithError%@", error);
+    _inviteBlock(NO);
 }
 
 #pragma mark - LifeCycleDelegate
