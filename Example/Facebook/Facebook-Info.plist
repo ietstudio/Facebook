@@ -25,17 +25,17 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb392706894400250</string>
-				<string>blackjack</string>
+				<string></string>
+				<string></string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>FacebookAppID</key>
-	<string>392706894400250</string>
+	<string></string>
 	<key>FacebookDisplayName</key>
-	<string>Blackjack</string>
+	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbauth2</string>

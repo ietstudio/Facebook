@@ -326,12 +326,13 @@ SINGLETON_DEFINITION(FacebookHelper)
     }];
 }
 
-- (void)setLevel:(int)level {
-    NSDictionary* permissions = [self isGrantedPermissions:@[@"publish_actions"]];
-    BOOL granted = [[permissions objectForKey:@"publish_actions"] boolValue];
-    if (granted) {
+- (void)setScore:(int)score {
+    [self checkPermissions:@[@"publish_actions"] :PERMISSION_PUBLISH :^(BOOL result) {
+        if (!result) {
+            return;
+        }
         NSString* graphPath = @"/me/scores";
-        NSDictionary* param = @{@"score":[NSNumber numberWithInt:level]};
+        NSDictionary* param = @{@"score":[NSNumber numberWithInt:score]};
         FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                       initWithGraphPath:graphPath
                                       parameters:param
@@ -343,11 +344,11 @@ SINGLETON_DEFINITION(FacebookHelper)
                 NSLog(@"%@", error);
             }
         }].timeout = GRAPH_API_TIMEOUT;
-    }
+    }];
 }
 
-- (void)getLevelWithId:(NSString *)fid cb:(void (^)(int))func {
-    [self checkPermissions:@[@"public_profile"] :PERMISSION_READ :^(BOOL result) {
+- (void)getScoreWithId:(NSString *)fid cb:(void (^)(int))func {
+    [self checkPermissions:@[@"user_friends"] :PERMISSION_READ :^(BOOL result) {
         if (!result) {
             func(-1);
             return;
@@ -426,6 +427,9 @@ SINGLETON_DEFINITION(FacebookHelper)
 #pragma mark - LifeCycleDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+#if DEBUG
+    [FBSDKSettings enableLoggingBehavior:FBSDKLoggingBehaviorAppEvents];
+#endif
     [FBSDKProfile enableUpdatesOnAccessTokenChange:YES];
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
@@ -473,6 +477,72 @@ SINGLETON_DEFINITION(FacebookHelper)
 
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler {
     
+}
+
+#pragma mark - AnalyticDelegate
+
+- (void)setAccoutInfo:(NSDictionary *)dict {
+    
+}
+
+- (void)onEvent:(NSString *)eventId {
+    [FBSDKAppEvents logEvent:eventId];
+}
+
+- (void)onEvent:(NSString *)eventId Label:(NSString *)label {
+    NSDictionary *params = @{@"key" : label};
+    [FBSDKAppEvents logEvent:eventId parameters:params];
+}
+
+- (void)onEvent:(NSString *)eventId eventData:(NSDictionary *)userInfo {
+    [FBSDKAppEvents logEvent:eventId parameters:userInfo];
+}
+
+- (void)setLevel:(int)level {
+    NSDictionary *params = @{FBSDKAppEventParameterNameLevel : [NSString stringWithFormat:@"%d", level]};
+    [FBSDKAppEvents logEvent:FBSDKAppEventNameAchievedLevel parameters:params];
+}
+
+- (void)charge:(NSString *)name :(double)cash :(double)coin :(int)type {
+    NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:[NSNumber numberWithDouble:coin] forKey:@"coin"];
+    [parameters setObject:[NSString stringWithFormat:@"%d", type] forKey:@"type"];
+    [FBSDKAppEvents logPurchase:cash currency:@"USD" parameters:parameters];
+    
+    NSDictionary *params = @{@"chips" : @(coin)};
+    [FBSDKAppEvents logEvent:@"Buy Chips" valueToSum:true parameters:params];
+}
+
+- (void)charge:(SKPaymentTransaction *)transaction {
+    
+}
+
+- (void)reward:(double)coin :(int)type {
+    NSDictionary *params = @{@"chips" : @(coin)};
+    [FBSDKAppEvents logEvent:@"Reward Chips" valueToSum:true parameters:params];
+}
+
+- (void)purchase:(NSString *)name :(int)amount :(double)coin {
+    
+}
+
+- (void)use:(NSString *)name :(int)amount :(double)coin {
+    NSDictionary *params = @{@"chips" : @(coin)};
+    [FBSDKAppEvents logEvent:@"Spent Chips" valueToSum:true parameters:params];
+}
+
+- (void)missionStart:(NSString *)missionId {
+    [self onEvent:@"Mission Start" Label:missionId];
+}
+
+- (void)missionSuccess:(NSString *)missionId {
+    NSDictionary *params = @{@"result" : @(1)};
+    [self onEvent:@"Mission Ended" eventData:params];
+}
+
+- (void)missionFailed:(NSString *)missionId because:(NSString *)reason {
+    NSDictionary *params = @{@"result" : @(0), @"reason" : reason};
+    [self onEvent:@"Mission Ended" eventData:params];
 }
 
 @end

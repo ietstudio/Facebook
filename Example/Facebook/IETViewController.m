@@ -64,13 +64,13 @@
 }
 
 - (IBAction)getLevel:(id)sender {
-    [[FacebookHelper getInstance] getLevelWithId:@"1582428892009015" cb:^(int level) {
+    [[FacebookHelper getInstance] getScoreWithId:@"me" cb:^(int level) {
         NSLog(@"%d", level);
     }];
 }
 
 - (IBAction)setLevel:(id)sender {
-    [[FacebookHelper getInstance] setLevel:10];
+    [[FacebookHelper getInstance] setScore:10];
 }
 
 - (IBAction)getAccessToken:(id)sender {

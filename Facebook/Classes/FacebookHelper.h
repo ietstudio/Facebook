@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Macros.h"
-#import "LifeCycleDelegate.h"
 #import <Bolts/Bolts.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
+#import "Macros.h"
+#import "LifeCycleDelegate.h"
+#import "AnalyticDelegate.h"
 
-@interface FacebookHelper : NSObject <LifeCycleDelegate, FBSDKGameRequestDialogDelegate, FBSDKAppInviteDialogDelegate>
+@interface FacebookHelper : NSObject <LifeCycleDelegate, AnalyticDelegate, FBSDKGameRequestDialogDelegate, FBSDKAppInviteDialogDelegate>
 
 SINGLETON_DECLARE(FacebookHelper)
 
@@ -123,7 +124,7 @@ SINGLETON_DECLARE(FacebookHelper)
 /**
  *  分享
  *
- *  @param title       标题
+ *  @param name        标题
  *  @param description 描述
  *  @param imageUrl    图片url
  *  @param contentUrl  内容url
@@ -131,19 +132,19 @@ SINGLETON_DECLARE(FacebookHelper)
 - (void)shareName:(NSString*)name description:(NSString*)description imageUrl:(NSString*)imageUrl contentUrl:(NSString*)contentUrl caption:(NSString*)caption :(void(^)(BOOL result))func;
 
 /**
- *  设置玩家等级
+ *  设置玩家分数
  *
- *  @param level 等级
+ *  @param score 等级
  */
-- (void)setLevel:(int)level;
+- (void)setScore:(int)score;
 
 /**
  *  获取好友等级
  *
- *  @param fid
- *  @param func 
+ *  @param fid      玩家fid
+ *  @param func     回调函数
  */
-- (void)getLevelWithId:(NSString*)fid cb:(void(^)(int level))func;
+- (void)getScoreWithId:(NSString*)fid cb:(void(^)(int score))func;
 
 /**
  邀请好友

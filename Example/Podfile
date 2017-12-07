@@ -3,6 +3,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 # use_frameworks!
 
 target 'Facebook_Example' do
+  platform :ios, '7.0'
   pod 'Facebook', :path => '../'
 
   target 'Facebook_Tests' do
