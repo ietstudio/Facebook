@@ -21,7 +21,7 @@ PODS:
   - Bolts/AppLinks (1.2.2):
     - Bolts/Tasks
   - Bolts/Tasks (1.2.2)
-  - Facebook (0.1.6):
+  - Facebook (0.1.7):
     - Bolts (~> 1.2.0)
     - FBSDKCoreKit (~> 4.5.1)
     - FBSDKLoginKit (~> 4.5.1)
@@ -40,7 +40,7 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.5.1):
     - FBSDKCoreKit
-  - GamePluginBase (0.2.5):
+  - GamePluginBase (0.2.6):
     - ALAssetsLibrary-CustomPhotoAlbum (~> 1.3.0)
     - BlocksKit (~> 2.2.5)
     - MBProgressHUD (~> 0.9.1)
@@ -65,11 +65,11 @@ SPEC CHECKSUMS:
   ALAssetsLibrary-CustomPhotoAlbum: 299ea3f58e988b453b19c595859354e562814c93
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   Bolts: 20a2bd788273360cb1e31530dc19b8544eef2544
-  Facebook: 14f5341487f3d1cb38e777536151c707af80ce9f
+  Facebook: 527ee0cad8b6e0c495705c46afb8f3c6c0ffe66a
   FBSDKCoreKit: f335eaf6865e1e1597dee1debfb533045500da47
   FBSDKLoginKit: 225cc9a388a92916ee3f3bb14422017b6e44b65b
   FBSDKShareKit: 642034ac9f30793dfd897851b724bb4281750266
-  GamePluginBase: 854352898a74117e50719ad1507ea12ed8f60a89
+  GamePluginBase: 736b1e51149da8e9911c066962566ae3bf41e758
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   NSLogger: 5ed223a2436df96244e033be750656dacdeec034
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96

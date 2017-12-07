@@ -545,4 +545,8 @@ SINGLETON_DEFINITION(FacebookHelper)
     [self onEvent:@"Mission Ended" eventData:params];
 }
 
+- (NSString *)getName {
+    return @"Facebook";
+}
+
 @end
