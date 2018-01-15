@@ -31,7 +31,7 @@ SINGLETON_DEFINITION(FacebookHelper)
  *
  *  @param permissions 权限
  *
- *  @return
+ *  @return 权限授权信息
  */
 - (NSDictionary*)isGrantedPermissions:(NSArray*)permissions {
     FBSDKAccessToken* accessToken = [FBSDKAccessToken currentAccessToken];
@@ -82,8 +82,8 @@ SINGLETON_DEFINITION(FacebookHelper)
  *  检测是否包含权限，如果没有包含，申请权限
  *  注意：申请是申请了，但是是否用户同意了，并没有做判断，应该是如果用户没有同意，
  *  弹出来为什么需要这个申请权限，然后下次在申请授权。
- *  @param permissions
- *  @param func
+ *  @param permissions  权限列表
+ *  @param func         回调函数
  */
 - (void)checkPermissions:(NSArray*)permissions :(NSString*)type :(void(^)(BOOL))func {
     assert(permissions && [permissions count]>0);
@@ -424,7 +424,7 @@ SINGLETON_DEFINITION(FacebookHelper)
     _inviteBlock(NO);
 }
 
-#pragma mark - LifeCycleDelegate
+#pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 #if DEBUG

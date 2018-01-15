@@ -12,46 +12,43 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
 #import "Macros.h"
-#import "LifeCycleDelegate.h"
 #import "AnalyticDelegate.h"
 
-@interface FacebookHelper : NSObject <LifeCycleDelegate, AnalyticDelegate, FBSDKGameRequestDialogDelegate, FBSDKAppInviteDialogDelegate>
+@interface FacebookHelper : NSObject <UIApplicationDelegate, AnalyticDelegate, FBSDKGameRequestDialogDelegate, FBSDKAppInviteDialogDelegate>
 
 SINGLETON_DECLARE(FacebookHelper)
 
 /**
  *  打开facebook主页
  *
- *  @param installUrl 主页
- *  @param url        主页url
+ *  @param installUrl   主页
+ *  @param url          主页url
  */
 - (void)openFacebookPage:(NSString*)installUrl :(NSString*)url;
 
 /**
  *  设置Login回调
  *
- *  @param func
+ *  @param func         回调函数
  */
 - (void)setLoginFunc:(void (^)(NSString* userId, NSString* token))func;
 
 /**
  *  设置AppLink回调
  *
- *  @param callback 
+ *  @param func         回调函数
  */
 - (void)setAppLinkFunc:(void (^)(NSDictionary *dict))func;
 
 /**
- *  是否已经登陆
+ *  检测是否已经登陆
  *
- *  @return
+ *  @return 是否已登陆
  */
 - (BOOL)isLogin;
 
 /**
  *  开始登陆
- *
- *  @param func 回调block
  */
 - (void)login;
 
@@ -62,22 +59,20 @@ SINGLETON_DECLARE(FacebookHelper)
 
 /**
  *  获取用户ID
- *
- *  @return
  */
 - (NSString*)getUserID;
 
 /**
  *  获取accesstoken
- *
- *  @return 
  */
 - (NSString*)getAccessToken;
 
 /**
- *  获取用户信息，注意，登陆成功以后，用户信息同步是异步的
- *
- *  @return
+ 获取用户信息，注意，登陆成功以后，用户信息同步是异步的
+
+ @param fid             用户id
+ @param picSize         头像大小
+ @param func            回调函数
  */
 - (void)getUserProfileWithId:(NSString*)fid andPicSize:(int)picSize cb:(void(^)(NSDictionary* dict))func;
 
@@ -92,7 +87,7 @@ SINGLETON_DECLARE(FacebookHelper)
 /**
  *  获取游戏中的好友
  *
- *  @param func 回调block
+ *  @param func         回调block
  */
 - (void)getFriendsWithPicSize:(int)picSize cb:(void(^)(NSDictionary* friends))func;
 
@@ -109,15 +104,15 @@ SINGLETON_DECLARE(FacebookHelper)
 /**
  *  查询收到的Request
  *
- *  @param func
+ *  @param func         回调函数
  */
 - (void)queryRequest:(void(^)(NSDictionary* requests))func;
 
 /**
  *  删除request
  *
- *  @param requestId
- *  @param func
+ *  @param requestId    requestId
+ *  @param func         回调函数
  */
 - (void)acceptRequest:(NSString*)requestId cb:(void(^)(BOOL result))func;
 
@@ -141,17 +136,17 @@ SINGLETON_DECLARE(FacebookHelper)
 /**
  *  获取好友等级
  *
- *  @param fid      玩家fid
- *  @param func     回调函数
+ *  @param fid          玩家fid
+ *  @param func         回调函数
  */
 - (void)getScoreWithId:(NSString*)fid cb:(void(^)(int score))func;
 
 /**
  邀请好友
 
- @param linkUrl
- @param imgUrl
- @param block
+ @param linkUrl         deepLink
+ @param imgUrl          图片Url
+ @param block           回调函数
  */
 - (void)inviteFriendsWithLink:(NSString*)linkUrl andImg:(NSString*)imgUrl withBlock:(void(^)(BOOL result))block;
 
