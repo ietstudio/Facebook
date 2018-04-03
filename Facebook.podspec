@@ -41,9 +41,9 @@ Facebook.
   # s.dependency 'AFNetworking', '~> 2.3'
 
   s.dependency 'GamePluginBase'
-  s.dependency 'Bolts', '~> 1.2.0'
-  s.dependency 'FBSDKCoreKit', '~> 4.5.1'
-  s.dependency 'FBSDKLoginKit', '~> 4.5.1'
-  s.dependency 'FBSDKShareKit', '~> 4.5.1'
+  s.dependency 'Bolts', '~> 1.7.0'
+  s.dependency 'FBSDKCoreKit', '~> 4.31.1'
+  s.dependency 'FBSDKLoginKit', '~> 4.31.1'
+  s.dependency 'FBSDKShareKit', '~> 4.31.1'
   # s.pod_target_xcconfig = { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES' }
 end

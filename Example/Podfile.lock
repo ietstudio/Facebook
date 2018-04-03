@@ -14,7 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - ALAssetsLibrary-CustomPhotoAlbum (1.3.1)
+  - ALAssetsLibrary-CustomPhotoAlbum (1.3.4)
   - BlocksKit (2.2.5):
     - BlocksKit/All (= 2.2.5)
   - BlocksKit/All (2.2.5):
@@ -30,34 +30,27 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
-  - Bolts (1.2.2):
-    - Bolts/AppLinks (= 1.2.2)
-    - Bolts/Tasks (= 1.2.2)
-  - Bolts/AppLinks (1.2.2):
+  - Bolts (1.7.0):
+    - Bolts/AppLinks (= 1.7.0)
+    - Bolts/Tasks (= 1.7.0)
+  - Bolts/AppLinks (1.7.0):
     - Bolts/Tasks
-  - Bolts/Tasks (1.2.2)
-  - Facebook (0.1.8):
-    - Bolts (~> 1.2.0)
-    - FBSDKCoreKit (~> 4.5.1)
-    - FBSDKLoginKit (~> 4.5.1)
-    - FBSDKShareKit (~> 4.5.1)
+  - Bolts/Tasks (1.7.0)
+  - Facebook (0.1.9):
+    - Bolts (~> 1.7.0)
+    - FBSDKCoreKit (~> 4.31.1)
+    - FBSDKLoginKit (~> 4.31.1)
+    - FBSDKShareKit (~> 4.31.1)
     - GamePluginBase
-  - FBSDKCoreKit (4.5.1):
-    - Bolts (~> 1.1)
-    - FBSDKCoreKit/arc (= 4.5.1)
-    - FBSDKCoreKit/no-arc (= 4.5.1)
-  - FBSDKCoreKit/arc (4.5.1):
-    - Bolts (~> 1.1)
-  - FBSDKCoreKit/no-arc (4.5.1):
-    - Bolts (~> 1.1)
-    - FBSDKCoreKit/arc
-  - FBSDKLoginKit (4.5.1):
+  - FBSDKCoreKit (4.31.1):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.31.1):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.5.1):
-    - FBSDKCoreKit
+  - FBSDKShareKit (4.31.1):
+    - FBSDKCoreKit (~> 4.31.1)
   - FCUUID (1.3.1):
     - UICKeyChainStore (~> 2.1.0)
-  - GamePluginBase (0.2.9):
+  - GamePluginBase (0.3.6):
     - AFNetworking (~> 3.1.0)
     - ALAssetsLibrary-CustomPhotoAlbum (~> 1.3.0)
     - BlocksKit (~> 2.2.5)
@@ -84,15 +77,15 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  ALAssetsLibrary-CustomPhotoAlbum: 299ea3f58e988b453b19c595859354e562814c93
+  ALAssetsLibrary-CustomPhotoAlbum: 73ce379e8bef8bb6ff2f286cd98461422f869fae
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
-  Bolts: 20a2bd788273360cb1e31530dc19b8544eef2544
-  Facebook: 2630dbc60e1573e547f6e179ca839c5deddb3ee2
-  FBSDKCoreKit: f335eaf6865e1e1597dee1debfb533045500da47
-  FBSDKLoginKit: 225cc9a388a92916ee3f3bb14422017b6e44b65b
-  FBSDKShareKit: 642034ac9f30793dfd897851b724bb4281750266
+  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
+  Facebook: b8db08dd989a5a174fb536bc95724fa28228a0c9
+  FBSDKCoreKit: e08ccfcefa7bc1347a07c276dac9bf6c7fe57024
+  FBSDKLoginKit: 99797ac39252fef6f72600b886f6ee60b4b29cab
+  FBSDKShareKit: e640c41c9fcd61929eeb3d0c21ad335103e7cb62
   FCUUID: bb054fc90cd7cd99320f9f6ff8e130fe607fba05
-  GamePluginBase: fd3b476158551c4895c2827f45100eb13c324293
+  GamePluginBase: d03f2e88f6407af99e363a5193f197a0ab1f3423
   JailbrokenDetector: 876cc32cf9ab41e249d44a5f2916a689137a4e33
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   NSLogger: 5ed223a2436df96244e033be750656dacdeec034

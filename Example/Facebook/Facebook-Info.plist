@@ -25,20 +25,27 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string></string>
-				<string></string>
+				<string>fb392706894400250</string>
+				<string>cardgamefreeblackjack</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>FacebookAppID</key>
-	<string></string>
+	<string>392706894400250</string>
 	<key>FacebookDisplayName</key>
-	<string></string>
+	<string>Blackjack</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
 		<string>fbauth2</string>
+		<string>fbshareextension</string>
+		<string>fb</string>
+		<string>instagram</string>
+		<string>tumblr</string>
+		<string>twitter</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
