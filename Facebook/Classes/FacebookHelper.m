@@ -71,10 +71,11 @@ SINGLETON_DEFINITION(FacebookHelper)
         }
         func(isSuccess);
     };
+    UIViewController *controller = [IOSSystemUtil getInstance].controller;
     if ([type isEqualToString:PERMISSION_READ]) {
-        [loginManager logInWithReadPermissions:permissions handler:block];
+        [loginManager logInWithReadPermissions:permissions fromViewController:controller handler:block];
     } else if ([type isEqualToString:PERMISSION_PUBLISH]) {
-        [loginManager logInWithPublishPermissions:permissions handler:block];
+        [loginManager logInWithPublishPermissions:permissions fromViewController:controller handler:block];
     }
 }
 
@@ -137,7 +138,7 @@ SINGLETON_DEFINITION(FacebookHelper)
 }
 
 - (void)login {
-    [self checkPermissions:@[@"public_profile", @"email", @"user_friends"] :PERMISSION_READ :^(BOOL isSuccess) {
+    [self checkPermissions:@[@"public_profile", @"email"] :PERMISSION_READ :^(BOOL isSuccess) {
         NSLog(@"login %@", isSuccess?@"SUCCESS":@"FAILED");
     }];
 }
@@ -159,12 +160,12 @@ SINGLETON_DEFINITION(FacebookHelper)
 
 - (void)getUserProfileWithId:(NSString *)fid andPicSize:(int)picSize cb:(void (^)(NSDictionary *))func {
     fid = fid == nil ? @"me" : fid;
-    [self checkPermissions:@[@"public_profile", @"email"] :PERMISSION_READ :^(BOOL result) {
+    [self checkPermissions:@[@"public_profile"] :PERMISSION_READ :^(BOOL result) {
         if (!result) {
             func(nil);
             return;
         }
-        NSString* graphPath = [NSString stringWithFormat:@"/%@?fields=id,name,gender,picture.height(%d).width(%d),email", fid, picSize, picSize];
+        NSString* graphPath = [NSString stringWithFormat:@"/%@?fields=id,name,picture.height(%d).width(%d),email", fid, picSize, picSize];
         FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                       initWithGraphPath:graphPath
                                       parameters:nil
