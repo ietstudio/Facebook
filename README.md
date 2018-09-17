@@ -22,7 +22,7 @@ pod "Facebook"
 
 ## Author
 
-gaoyang, gaoyang@joycastle.mobi
+gaoyang
 
 ## License
 
